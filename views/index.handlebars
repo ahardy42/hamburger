@@ -7,14 +7,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-5">
+        <div class="col-5 text-center">
+            <h2>Burgers You Have Concieved...</h2>
+            <h5 class="text-muted">but have not eaten</h5>
             <!-- list displaying un-eaten burgers-->
             <ul class="list-group">
                 {{#each burgers}}
                     {{#unless isDevoured}}
-                        <li class="list-group-item">
-                            <p>Name: {{burger_name}}</p>
-                            <button type="button" class="btn btn-success" id="{{id}}">Eat Me!</button>
+                        <li class="list-group-item row">
+                            <p class="col-8">Name: {{burger_name}}</p>
+                            <button type="button" class="btn btn-success col-4" id="{{id}}">Eat Me!</button>
                         </li>
                     {{/unless}}
                 {{/each}}
@@ -24,12 +26,12 @@
 
         </div>
         <div class="col-5">
+            <h2>Eaten Burgers</h2>
             <ul class="list-group">
                 {{#each burgers}}
                     {{#if isDevoured}}
-                        <li class="list-group-item">
+                        <li class="list-group-item d-flex justify-content-center">
                             <p>Name: {{burger_name}}</p>
-                            <button type="button" class="btn btn-success" id="{{id}}">Eat Me!</button>
                         </li>
                     {{/if}}
                 {{/each}}
