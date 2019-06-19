@@ -55,7 +55,7 @@ var orm = {
         });
     },
     insertOne: (table, columns, updatedColumns, callback) => {
-        const sqlString = "INSERT INTO ?? (?) VALUES (?)";
+        const sqlString = "INSERT INTO ?? (??) VALUES (??)";
         connection.query(sqlString, [table, columns, updatedColumns], (err, data) => {
             if (err) console.log(err);
             callback(data);

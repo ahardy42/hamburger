@@ -13,12 +13,33 @@ var burger = require("../models/burger");
 router.get("/", (req, res) => {
     // chuck i had a double burger... 
     burger.all((data) => {
-        burgerObject = {
+        var burgerObject = {
             burgers: data
         }
         res.render("index", burgerObject);
     });
 });
+
+router.put("/burger/:id", (req, res) => {
+    // update isEaten value of a burger
+    var id = req.params.id;
+    burger.update(id, (data) => {
+        var burgerObject = {
+            burgers: data
+        }
+        res.render("index", burgerObject);
+    });
+});
+
+router.post("/burger", (req, res) => {
+    var newBurger = req.body;
+    burger.insert(newBurger.name, newBurger.isDevoured, (data) => {
+        var burgerObject = {
+            burgers: data
+        }
+        res.render("index", burgerObject);
+    })
+})
 
 // Export routes for server.js to use.
 module.exports = router;
