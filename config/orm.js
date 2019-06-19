@@ -2,14 +2,23 @@ var connection = require("./connection");
 
 
 // Helper function to convert object key/value pairs to SQL syntax
-var insertColsAndValues = (object) => {
-    var colsArray = [];
-    var valuesArray = [];
-    for (var key in object) {
+const insertColsAndValues = (object) => {
+    let colsArray = [];
+    let valuesArray = [];
+    for (const key in object) {
         colsArray.push(key);
         valuesArray.push(object[key]);
     }
     return [colsArray, valuesArray];
+}
+
+const updateHelper = (object) => {
+    let arr = [];
+    for (const key in object) {
+        arr.push(key);
+        arr.push(object[key]);
+    }
+    return arr;
 }
 
 var orm = {
@@ -21,9 +30,10 @@ var orm = {
             callback(data);
         });
     },
-    updateOne: (table, col, val, conditionString, callback) => {
-        const sqlString = "UPDATE ?? SET ?? = ? WHERE ??";
-        connection.query(sqlString, [table, col, val, conditionString], (err, data) => {
+    updateOne: (object, callback) => {
+        const sqlString = "UPDATE burgers SET ?? = ? WHERE ?? = ?";
+        const inserts = updateHelper(object);
+        connection.query(sqlString, inserts, (err, data) => {
             if (err) console.log(err);
             callback(data);
         });

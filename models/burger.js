@@ -10,9 +10,8 @@ var burger = {
             callback(data);
         });
     },
-    update: (id, callback) => {
-        var conditionString = `id = ${id}`;
-        orm.updateOne("burgers", "isDevoured", true, conditionString, () => {
+    update: (object, callback) => {
+        orm.updateOne(object, () => {
             orm.selectAll("burgers", (data) => {
                 callback(data);
             });

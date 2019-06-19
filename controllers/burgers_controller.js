@@ -21,10 +21,10 @@ router.get("/", (req, res) => {
     });
 });
 
-router.put("/burger/:id", (req, res) => {
+router.put("/update", (req, res) => {
     // update isEaten value of a burger
-    var id = req.params.id;
-    burger.update(id, (data) => {
+    var updatedBurger = req.body;
+    burger.update(updatedBurger, (data) => {
         var burgerObject = {
             burgers: data
         }
@@ -35,7 +35,6 @@ router.put("/burger/:id", (req, res) => {
 
 router.post("/burger", (req, res) => {
     var newBurger = req.body;
-    console.log(newBurger);
     burger.insert(newBurger, (data) => {
         var burgerObject = {
             burgers: data
