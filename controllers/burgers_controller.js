@@ -16,7 +16,8 @@ router.get("/", (req, res) => {
         var burgerObject = {
             burgers: data
         }
-        res.render("index", burgerObject);
+        // res.render("index", burgerObject);
+        res.json(burgerObject);
     });
 });
 
@@ -27,17 +28,20 @@ router.put("/burger/:id", (req, res) => {
         var burgerObject = {
             burgers: data
         }
-        res.render("index", burgerObject);
+        // res.render("index", burgerObject);
+        res.json(burgerObject);
     });
 });
 
 router.post("/burger", (req, res) => {
     var newBurger = req.body;
-    burger.insert(newBurger.name, newBurger.isDevoured, (data) => {
+    console.log(newBurger);
+    burger.insert(newBurger, (data) => {
         var burgerObject = {
             burgers: data
         }
-        res.render("index", burgerObject);
+        // res.render("index", burgerObject);
+        res.json(burgerObject);
     })
 })
 

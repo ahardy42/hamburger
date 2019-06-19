@@ -10,6 +10,6 @@ CREATE TABLE burgers (
     burger_name VARCHAR(100) NOT NULL,
     isDevoured BOOLEAN NOT NULL,
     createdat TIMESTAMP NOT NULL,
-    PRIMARY KEY (item_id)
+    PRIMARY KEY (id)
 );
 

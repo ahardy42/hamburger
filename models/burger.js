@@ -18,8 +18,8 @@ var burger = {
             });
         });
     },
-    insert: (name, isDevoured, callback) => {
-        orm.insertOne("burgers", ["burger_name", "isDevoured"], [name, isDevoured], () => {
+    insert: (object, callback) => {
+        orm.insertOne("burgers", object, () => {
             orm.selectAll("burgers", (data) => {
                 callback(data);
             });
