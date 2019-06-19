@@ -16,8 +16,8 @@ router.get("/", (req, res) => {
         var burgerObject = {
             burgers: data
         }
-        // res.render("index", burgerObject);
-        res.json(burgerObject);
+        res.render("index", burgerObject);
+        // res.json(burgerObject);
     });
 });
 
@@ -39,8 +39,8 @@ router.post("/burger", (req, res) => {
         var burgerObject = {
             burgers: data
         }
-        // res.render("index", burgerObject);
-        res.json(burgerObject);
+        res.render("index", burgerObject);
+        // res.json(burgerObject);
     })
 })
 
