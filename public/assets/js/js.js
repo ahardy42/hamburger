@@ -44,7 +44,6 @@ $(document).ready(() => {
         event.preventDefault();
 
         let name = $("#burger-name").val().trim();
-        console.log(name);
 
         // validation
         if (name.length < 1) {
