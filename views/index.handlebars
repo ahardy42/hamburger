@@ -7,25 +7,33 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-5 text-center">
+        <div class="col-4 text-center">
             <h2>Burgers You Have Concieved...</h2>
             <h5 class="text-muted">but have not eaten</h5>
             <!-- list displaying un-eaten burgers-->
             <ul class="list-group">
                 {{#each burgers}}
                     {{#unless isDevoured}}
-                        <li class="list-group-item row">
+                        <li class="list-group-item row" data-id="{{id}}">
                             <p class="col-8">Name: {{burger_name}}</p>
-                            <button type="button" class="btn btn-success col-4" id="{{id}}">Eat Me!</button>
+                            <button type="button" class="btn btn-success col-4 eat" data-id="{{id}}">Eat Me!</button>
                         </li>
                     {{/unless}}
                 {{/each}}
             </ul>
         </div>
-        <div class="col-2">
-
+        <div class="col-4">
+            <form>
+                <div class="form-group">
+                    <label for="burger-name">Enter the name of a burger you wish to DEVOUR!</label>
+                    <input type="text" class="form-control" id="burger-name">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" id="burger">Submit</button>
+                </div>
+            </form>
         </div>
-        <div class="col-5">
+        <div class="col-4">
             <h2>Eaten Burgers</h2>
             <ul class="list-group">
                 {{#each burgers}}
