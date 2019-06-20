@@ -22,10 +22,40 @@ $(document).ready(() => {
         });
     });
 
+    $("body").on("click", ".make", (event) => {
+        event.preventDefault();
+        let burgerId = event.currentTarget.getAttribute("data-id");
+        
+        // now, we run a put to change the isDevoured property
+        let updatedBurger = {
+            isDevoured: 0,
+            id: burgerId
+        };
+
+        $.ajax("/update", {
+            method: "PUT",
+            data: updatedBurger
+        }).then(() => {
+            location.reload();
+        });
+    });
+
     $("#burger").on("click", (event) => {
         event.preventDefault();
+
+        let name = $("#burger-name").val().trim();
+        console.log(name);
+
+        // validation
+        if (name.length < 1) {
+            $("#length").text("Please Enter A Valid Name!");
+            return;
+        } else {
+            $("#length").text("");
+        }
+
         let newBurger = {
-            burger_name: $("#burger-name").val().trim(),
+            burger_name: name,
             isDevoured: 0
         };
 
@@ -36,7 +66,5 @@ $(document).ready(() => {
             location.reload();
         });
     })
-
-
 
 });

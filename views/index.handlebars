@@ -15,7 +15,7 @@
                 {{#each burgers}}
                     {{#unless isDevoured}}
                         <li class="list-group-item row" data-id="{{id}}">
-                            <p class="col-8">Name: {{burger_name}}</p>
+                            <p class="col-8">{{burger_name}}</p>
                             <button type="button" class="btn btn-success col-4 eat" data-id="{{id}}">Eat Me!</button>
                         </li>
                     {{/unless}}
@@ -27,6 +27,7 @@
                 <div class="form-group">
                     <label for="burger-name">Enter the name of a burger you wish to DEVOUR!</label>
                     <input type="text" class="form-control" id="burger-name">
+                    <small id='length' class='form-text text-danger'></small>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" id="burger">Submit</button>
@@ -38,8 +39,9 @@
             <ul class="list-group">
                 {{#each burgers}}
                     {{#if isDevoured}}
-                        <li class="list-group-item d-flex justify-content-center">
-                            <p>Name: {{burger_name}}</p>
+                        <li class="list-group-item" data-id="{{id}}">
+                            <p>{{burger_name}}</p>
+                            <button type="button" class="btn btn-success make" data-id="{{id}}">Make Another!</button>
                         </li>
                     {{/if}}
                 {{/each}}
