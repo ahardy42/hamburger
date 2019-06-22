@@ -49,9 +49,19 @@
             <ul class="list-group">
                 {{#each burgers}}
                 {{#if isDevoured}}
-                <li class="list-group-item" data-id="{{id}}">
-                    <p>{{burger_name}}</p>
-                    <button type="button" class="btn btn-success make" data-id="{{id}}">Make Another!</button>
+                <li class="list-group-item bg-transparent burger-container" data-id="{{id}}">
+                    <div class="row">
+                        <div class="burger-composite">
+                            <img src="assets/img/topBun.png" class="top-bun" style="width: 100%">
+                            <img src="assets/img/burger.png" class="burger" style="width: 100%">
+                            <img src="assets/img/buttomBun.png" class="bottom-bun" style="width: 100%">
+                        </div>
+                        <div class="container-fluid col-sm" data-id="{{id}}">
+                            <p class="col align-self-center name">
+                                {{burger_name}}
+                            </p>
+                        </div>
+                    </div>
                 </li>
                 {{/if}}
                 {{/each}}
