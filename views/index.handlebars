@@ -1,11 +1,11 @@
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Dreaming about Burgers</h1>
-        <p class="lead">Chuck I had a double burger...</p>
+<div class="jumbotron-fluid my-4">
+    <div class="container text-white">
+        <div class="row">
+            <h1 class="display-4">Make some Burgers!</h1>
+        </div>
     </div>
 </div>
-
-<div class="container">
+<div class="container text-white">
     <div class="row">
         <div class="col-4 text-center">
             <h2>Burgers You Have Concieved...</h2>
@@ -13,12 +13,22 @@
             <!-- list displaying un-eaten burgers-->
             <ul class="list-group">
                 {{#each burgers}}
-                    {{#unless isDevoured}}
-                        <li class="list-group-item row" data-id="{{id}}">
-                            <p class="col-8">{{burger_name}}</p>
-                            <button type="button" class="btn btn-success col-4 eat" data-id="{{id}}">Eat Me!</button>
-                        </li>
-                    {{/unless}}
+                {{#unless isDevoured}}
+                <li class="list-group-item bg-transparent burger-container" data-id="{{id}}">
+                    <div class="row">
+                        <div class="burger-composite">
+                            <img src="assets/img/topBun.png" class="top-bun" style="width: 100%">
+                            <img src="assets/img/burger.png" class="burger" style="width: 100%">
+                            <img src="assets/img/buttomBun.png" class="bottom-bun" style="width: 100%">
+                        </div>
+                        <div class="container-fluid col-sm" data-id="{{id}}">
+                            <p class="col align-self-center name">
+                                {{burger_name}}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                {{/unless}}
                 {{/each}}
             </ul>
         </div>
@@ -33,22 +43,17 @@
                     <button type="submit" class="btn btn-primary" id="burger">Submit</button>
                 </div>
             </form>
-            <div style="position: relative">
-                <img src="assets/img/topBun.png" class="top-bun" style="width: 100%">
-                <img src="assets/img/burger.png" class="burger" style="width: 100%">
-                <img src="assets/img/buttomBun.png" class="bottom-bun" style="width: 100%">
-            </div>
         </div>
         <div class="col-4">
             <h2>Eaten Burgers</h2>
             <ul class="list-group">
                 {{#each burgers}}
-                    {{#if isDevoured}}
-                        <li class="list-group-item" data-id="{{id}}">
-                            <p>{{burger_name}}</p>
-                            <button type="button" class="btn btn-success make" data-id="{{id}}">Make Another!</button>
-                        </li>
-                    {{/if}}
+                {{#if isDevoured}}
+                <li class="list-group-item" data-id="{{id}}">
+                    <p>{{burger_name}}</p>
+                    <button type="button" class="btn btn-success make" data-id="{{id}}">Make Another!</button>
+                </li>
+                {{/if}}
                 {{/each}}
             </ul>
         </div>

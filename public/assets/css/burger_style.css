@@ -1,20 +1,68 @@
+#burger-video {
+    z-index: -5;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+.burger-container {
+    background-color: rgba(126, 19, 19, 0.233);
+    position: relative;
+    height: 150px;
+    border: none;
+    /* margin: 50px 0; */
+}
+
+.burger-container > .row {
+    height: 100%;
+    width: 100%;
+}
+
+.burger-composite {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
 .top-bun {
     width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
     z-index: 50;
 }
 
 .burger {
     width: 100%;
     position: absolute;
-    top: 50px;
+    top: 80%;
+    left: 0;
     z-index: 45;
+}
+
+.lettuce {
+
+}
+
+.tomato {
+
 }
 
 .bottom-bun {
     width: 100%;
     position: absolute;
-    top: 100px;
+    top: 155%;
+    left: 0;
     z-index: 40;
 }
+
+.name {
+    z-index: 60;
+    /* height: 100%; */
+}
+
+

@@ -4,7 +4,7 @@ $(document).ready(() => {
     // listeners
     // ================================================================================================
 
-    $("body").on("click", ".eat", (event) => {
+    $("body").on("click", ".burger-container", (event) => {
         event.preventDefault();
         let burgerId = event.currentTarget.getAttribute("data-id");
         
@@ -64,6 +64,6 @@ $(document).ready(() => {
         }).then(() => {
             location.reload();
         });
-    })
+    });
 
 });
