@@ -1,52 +1,48 @@
 $(document).ready(() => {
 
     // ================================================================================================
-    // vars
+    // on load animation
     // ================================================================================================
 
-    const burgers = $(".burger-composite");
-    console.log(burgers);
+    $(".burger").animate({ opacity: "1" }, 1000); // fade in existing burgers
 
     // ================================================================================================
     // animation functions
     // ================================================================================================
 
-    const appear = () => {
-        $(".burger-composite").animate({opacity: "0.9"}, {duration: 1000, queue: true});
-        $(".burger-composite").animate({width: "90%"}, {duration: 500, queue: true});
+    const displayMirroredInput = (e) => {
+        let input = e.target.value;
+        if (input.length === 0) {
+            $("#burger-preview-img").animate({ opacity: "0" }, 500);
+        } else if (input.length <= 25) {
+            $("#burger-preview-img").animate({ opacity: "0.8" }, 500);
+            $("#length").text("");
+        }
+        $("#burger-preview").text(input);
     }
+
     // ================================================================================================
     // listeners
     // ================================================================================================
-    appear();
 
-    $("body").on("click", ".burger-container", (event) => {
-        event.preventDefault();
+    $("body").on("click", ".burger", (event) => {
         let burgerId = event.currentTarget.getAttribute("data-id");
+        let burgerEaten = event.currentTarget.getAttribute("data-eaten");
+        $(`[data-id=${burgerId}]`).animate({opacity: "0"}, 1000);
 
         // now, we run a put to change the isDevoured property
-        let updatedBurger = {
-            isDevoured: 1,
-            id: burgerId
-        };
-
-        $.ajax("/update", {
-            method: "PUT",
-            data: updatedBurger
-        }).then(() => {
-            location.reload();
-        });
-    });
-
-    $("body").on("click", ".make", (event) => {
-        event.preventDefault();
-        let burgerId = event.currentTarget.getAttribute("data-id");
-
-        // now, we run a put to change the isDevoured property
-        let updatedBurger = {
-            isDevoured: 0,
-            id: burgerId
-        };
+        let updatedBurger;
+        if (burgerEaten == 0) {
+            updatedBurger = {
+                isDevoured: 1,
+                id: burgerId
+            };
+        } else {
+            updatedBurger = {
+                isDevoured: 0,
+                id: burgerId
+            };
+        }
 
         $.ajax("/update", {
             method: "PUT",
@@ -65,6 +61,9 @@ $(document).ready(() => {
         if (name.length < 1) {
             $("#length").text("Please Enter A Valid Name!");
             return;
+        } else if (name.length >= 25) {
+            $("#length").text("That name is too long!");
+            return;
         } else {
             $("#length").text("");
         }
@@ -81,5 +80,12 @@ $(document).ready(() => {
             location.reload();
         });
     });
+
+    $("#burger-name").on("input", (event) => {
+        if (event)
+        displayMirroredInput(event);
+    });
+
+
 
 });
